@@ -168,7 +168,7 @@ def fact():
         arr[i]=x
         
     x=arr
-    y=["0 - No, not at all" ,"3 - Sometimes" ,"5 - Yes, constantly"]
+    y=["No, not at all" ," Sometimes" ," Yes, constantly"]
     plt.plot(y,x,marker='o', markerfacecolor='blue', markersize=12)
     plt.grid()
     for value in x:
@@ -212,7 +212,35 @@ def fact():
     plot_data6 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    y=["Poor", "Needs improvement" ,"Fair"," Good","Very good","Excellent"]
+    y=["No", "Daily" ,"Weekly","Monthly"]
+    x=[0,1,2,3]
+    for i in x:
+        value = gpa_score[gpa_score['Do you consume alcoholic beverages and/or smoke tobacco products? If yes, please specify the day']==i]
+        value_count= gpa_score[gpa_score['Do you consume alcoholic beverages and/or smoke tobacco products? If yes, please specify the day']==i].shape[0]
+        gpa = value[value['Xaxis']==1].shape[0]
+        if value_count==0:
+              x[i]==0
+        else:
+            x[i]=gpa/value_count
+       
+    print(x)
+    plt.figure(figsize=(8, 6)) 
+    plt.plot(y,x,marker='o', markerfacecolor='blue', markersize=12)
+    plt.xlabel('Alocohol usage')
+    plt.ylabel('Probability for GPA 3.00+')
+    plt.ylim(0,1)
+    plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(0.05))
+    for value in x:
+        plt.axhline(y=value, color='r', linestyle='--', linewidth=1)
+    plt.grid()
+
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_data7 = base64.b64encode(buffer.read()).decode('utf-8')
+    plt.close()
+
+    y=["Poor", "Needs \n improvement" ,"Fair"," Good","Very good","Excellent"]
     x=[0,1,2,3,4,5]
     for i in x:
         value = gpa_score[gpa_score['How about your Study Habits?']==i]
@@ -221,7 +249,7 @@ def fact():
         x[i]=gpa/value_count
 
     print(x)
-
+    plt.figure(figsize=(8, 6)) 
     plt.plot(y,x,marker='o', markerfacecolor='blue', markersize=12)
     plt.xlabel('Study habits')
     plt.ylabel('Probability for GPA 3.00+')
@@ -237,7 +265,36 @@ def fact():
     plot_data8 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    x=["No, rarely attend","Occasionally attend" ,"Sometimes attend", " Often attend ", "Regularly attend","Yes, always attend"]
+    y=["Poor", "Needs \n Improvement" ,"Fair","Good","Very \n Good","Excellent"]
+    x=[0,1,2,3,4,5]
+    for i in x:
+        value = gpa_score[gpa_score['How is your Time management skills?']==i]
+        value_count= gpa_score[gpa_score['How is your Time management skills?']==i].shape[0]
+        gpa = value[value['Xaxis']==1].shape[0]
+        if value_count==0:
+              x[i]==0
+        else:
+            x[i]=gpa/value_count
+       
+    print(x)
+    plt.figure(figsize=(8, 6)) 
+    plt.plot(y,x,marker='o', markerfacecolor='blue', markersize=12)
+    plt.xlabel('Time Management')
+    plt.ylabel('Probability for GPA 3.00+')
+    plt.ylim(0,1)
+    plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(0.05))
+    for value in x:
+        plt.axhline(y=value, color='r', linestyle='--', linewidth=1)
+    plt.grid()
+
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_data9 = base64.b64encode(buffer.read()).decode('utf-8')
+    plt.close()
+
+
+    x=["No, rarely ","Occasionally " ,"Sometimes ", " Often  ", "Regularly ","Yes, always "]
     y=[0,1,2,3,4,5]
     for i in y:
         value = gpa_score[gpa_score['Do you regularly attend the classes ?']==i]
@@ -265,7 +322,7 @@ def fact():
     plot_data10 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    x=["Not at all","Minimal participation","Moderate participation","Average participation ","Active participation","Very active participation"]
+    x=["Not at all","Minimal","Moderate","Average","Active","Very active"]
     y=[0,1,2,3,4,5]
     for i in y:
         value = gpa_score[gpa_score['Do you actively participate in classes ?']==i]
@@ -293,7 +350,7 @@ def fact():
     plot_data11 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    x=["Poor"," Needs improvement ","Fair ","Good","Very good","Excellent "]
+    x=["Poor"," Needs \n improvement ","Fair ","Good","Very good","Excellent "]
     y=[0,1,2,3,4,5]
     for i in y:
         value = gpa_score[gpa_score['How about your preparation for Exams and Assignments?']==i]
@@ -305,6 +362,7 @@ def fact():
             y[i]=gpa/value_count
 
     print(y)
+    plt.figure(figsize=(8, 6)) 
     plt.plot(x,y,marker='o', markerfacecolor='blue', markersize=12)
     plt.xlabel('Preparation')
     plt.ylabel('Probability for GPA 3.00+')
@@ -320,7 +378,7 @@ def fact():
     plot_data12 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    x=["Minimal engagement","Limited engagement","Some engagement","Moderate engagement","High engagement","Very high engagement"]
+    x=["Minimal","Limited","Some","Moderate","High","Very high"]
     y=[0,1,2,3,4,5]
     for i in y:
         value = gpa_score[gpa_score['What about your engagement with course materials?']==i]
@@ -429,7 +487,7 @@ def fact():
     plot_data16 = base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    x=["No, not at all "," Unsatisfied","Somewhat \n unsatisfied","Neutral","Satisfied","Yes, very satisfied"]
+    x=["No, not at all "," Unsatisfied","Somewhat \n unsatisfied ","Neutral","Satisfied","Very satisfied"]
     y=[0,1,2,3,4,5]
     for i in y:
             value = gpa_score[gpa_score['Do you satisfy with your learning environment?']==i]
@@ -441,6 +499,7 @@ def fact():
                 y[i]=gpa/value_count
 
     print(y)
+    plt.figure(figsize=(8, 6)) 
     plt.plot(x,y,marker='o', markerfacecolor='blue', markersize=12)
     plt.xlabel('Learning environment')   
     plt.ylabel('Probability for GPA 3.00+')
@@ -484,7 +543,7 @@ def fact():
     plot_data18= base64.b64encode(buffer.read()).decode('utf-8')
     plt.close()
 
-    return render_template("factorsta.html", plot_data=plot_data,plot_data2=plot_data2,plot_data3=plot_data3,plot_data4=plot_data4,plot_data5=plot_data5,plot_data6=plot_data6,plot_data8=plot_data8,plot_data10=plot_data10,plot_data11=plot_data11,plot_data12=plot_data12,plot_data13=plot_data13,plot_data14=plot_data14,plot_data15=plot_data15,plot_data16=plot_data16,plot_data17=plot_data17,plot_data18=plot_data18)
+    return render_template("factorsta.html", plot_data=plot_data,plot_data2=plot_data2,plot_data3=plot_data3,plot_data4=plot_data4,plot_data5=plot_data5,plot_data6=plot_data6,plot_data7=plot_data7,plot_data8=plot_data8,plot_data9=plot_data9,plot_data10=plot_data10,plot_data11=plot_data11,plot_data12=plot_data12,plot_data13=plot_data13,plot_data14=plot_data14,plot_data15=plot_data15,plot_data16=plot_data16,plot_data17=plot_data17,plot_data18=plot_data18)
 
 
 @application.route('/home/dashboard/features')

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GPA Score</title>
-    <link rel="stylesheet" href="httptemplates/dashboard.css">
+    <link rel="stylesheet" href="http://localhost:3000/templates/dashboard.css">
 </head>
 <body>
     
